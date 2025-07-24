@@ -1,16 +1,19 @@
+編輯: @yijencheng
+# 摘要
 Sliding Window 是一個演算法，通常是針對[[找出Array中所有符合條件的最佳解]]進行的優化。
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GcW4mgmgSbw?si=ZTYGQGikCAgV818X" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 # 模板
 🍎 參數初始化
-* 選擇 window資料結構：最常見使用 [[Dict (HashMap)]]
+* 選擇 window資料結構：如果是Fix-Sized多用Array、動態長度則常見使用 [[Dict (HashMap)]]
 * Left/start 指針: 在縮小window時，用來追蹤window的左邊界
 * ans 變數最佳答案
 
 🍎 [[遍歷 array]] 
 * 用for/while loop遍歷
 🍎 縮小window，找到包含新元素的答案
-* 
+* 決定先將新元素加入window（多數），還是後加
 * 建議用while loop 
 🍎 更新答案
 ```python
@@ -31,7 +34,7 @@ for i, num in enumerate(nums):
 	
 ```
 
-# 範例1
+# 範例2
 題目：[3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
 ```run-python
 def lengthOfLongestSubstring(s: str) -> int:
@@ -58,7 +61,7 @@ if __name__ == "__main__":
 
 ```
 
-# 範例2
+# 範例3
 題目：[904. Fruit Into Baskets](https://leetcode.com/problems/fruit-into-baskets/description/)
 ```run-python
 def totalFruit(self, fruits: List[int]) -> int:
@@ -78,3 +81,5 @@ def totalFruit(self, fruits: List[int]) -> int:
 	return ans
 ```
 
+
+# 觀察
