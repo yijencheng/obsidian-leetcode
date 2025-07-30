@@ -5,19 +5,16 @@ Sliding Window 是一個演算法，通常是針對[[找出Array中所有符合�
 
 
 # 模板
-分成固定長度窗口 (Fixed Size)  v.s. 動態窗口 (Dynamic Size)。
 
 🍎 參數初始化
-* 選擇 window資料結構：動態窗口常用 [[Dict (HashMap)]]
+* 選擇 window資料結構：常用 [[Dict (HashMap)]]
 * Left/start 指針: 在縮小window時，用來追蹤window左邊界
-* ans：變數最佳答案
-
+* ans：用來存最佳答案
 🍎 [[遍歷 array]] 
-* 可用for/while loop遍歷
+* 用for/while loop遍歷
 🍎 縮小window，找到包含新元素的答案
 * 決定先將新元素加入window（多數）還是後加
-* **根據window限制，決定縮小的邏輯**
-* 建議用while loop 
+* **判斷window限制，用while loop縮小窗口**
 🍎 更新答案
 ```python
 ## 參數初始化
@@ -34,23 +31,33 @@ for i, num in enumerate(nums):
 
 	## 更新答案
 	ans = max(ans, i-left+1)
-	
 ```
 
-# 範例1
+## 判斷window限制，用while-loop縮小窗口
+
+# 例題
+### 範例1
 題目：[Maximum sum of subarray with size k](https://www.geeksforgeeks.org/dsa/find-maximum-minimum-sum-subarray-size-k/)
+敘述：Given an array of integers and a number k, find the maximum sum of a subarray of size k.
+Example 1: 
+> Input  : arr = {100, 200, 300, 400},  k = 2
+> Output : 700
+
+思考：
 ```python
 window = []
 left = 0
 ans = 0
 for i, num in enumerate(arr):
+	## 縮小window，找到包含新元素的答案
 	window.append(num) 
-	if len(window) > k:
+	while len(window) > k:
 		window.pop(0) ## pop操作很慢
 		left+=1
 	ans = max(ans, sum(window)) ## sum操作很慢
 return ans
-
+```
+```python
 ## queue 優化版
 q = deque()
 left = 0
@@ -58,18 +65,22 @@ ans = 0
 for i, num in enumerate(arr):
 	## 縮小window，找到包含新元素的答案
 	q.append(num) 
-	if len(q) > k:
+	while len(q) > k:
 		q.popleft() ## pop操作O(1)
 		left+=1
 	## 更新答案
 	ans = max(ans, sum(q)) ## sum操作還是慢
 ```
+註解：這題實際上有更佳解法，但這裡想透過這個比較簡單的題目，介紹動態窗口的寫法。
 
-這題實際上有更佳解法，但這裡想透過固定窗口的題目，帶出下面範例中 動態窗口的寫法。
-
-# 範例2
+### 範例2
 題目：[3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
-```run-python
+敘述：Given a string s, find the length of the longest substring without duplicate characters.
+思考：
+* 首先注意到“without duplicate characters“，第一直覺會想用 set()。但在sliding window–dynamic size題型中，調整window大小時需要紀錄左邊移動到哪個index，set()無法滿足
+* 接著思考如何判斷 “duplicate characters" ，可以先聯想到用 dict 這個結構。接著有兩種判斷方式 1) 如果是先加入新的元素且發生重複，則 dict[key] > 1 2) 如果要保證加入新元素不會重複，則要看 key in d
+```python
+# 先加入新元素
 def lengthOfLongestSubstring(s: str) -> int:
 	## 參數初始化
 	d = {}
@@ -88,16 +99,30 @@ def lengthOfLongestSubstring(s: str) -> int:
 	return longest
 
 
-if __name__ == "__main__":
-	ans = lengthOfLongestSubstring("abcabcbb") 
-	print(ans) # Output: 3
-
+# 最後加入新元素
+def lengthOfLongestSubstring(s: str) -> int:
+	## 參數初始化
+	d = {}
+	l = 0
+	longest = 0
+	
+	## 遍歷
+	for i, ch in enumerate(s):
+		## 縮小window，確保加入新元素後會是符合條件的答案
+		while ch in d:
+			d[s[l]] -=1
+			if d[s[l]] == 0:del d[s[l]]
+			l+=1
+		d[ch] = d.get(ch, 0)+1
+		## 更新答案
+		longest = max(i-l+1, longest)
+	return longest
 ```
 
-# 範例3
+### 範例3
 題目：[904. Fruit Into Baskets](https://leetcode.com/problems/fruit-into-baskets/description/)
 概念：Longest Substring with K Distinct Characters
-```run-python
+```python
 def totalFruit(self, fruits: List[int]) -> int:
 	d = {}
 	left = 0
@@ -108,19 +133,17 @@ def totalFruit(self, fruits: List[int]) -> int:
 		d[fruit] = d.get(fruit,0)+1
 		while len(d) >2:
 			d[fruits[left]] -=1
-			## 字典的Key數量會影響上面while判斷，因此需要移除（保證不超過兩個）
 			if d[fruits[left]] == 0: del d[fruits[left]] 
 			left +=1
 		ans = max(ans, i-left+1)
 	return ans
 ```
-
-
-# 觀察討論
+註解：
+* 字典的Key數量會影響上面while判斷，因此需要移除（保證不超過兩個）
+# 討論
 在上面範例中：範例1 對window的限制是「長度為k」、範例 2, 3 的限制則是「最多 K Distinct Characters」。其他類似題型會有不同窗口限制，因此須熟悉各種資料結構的特性：
 
 1. Maximum/Minimum Subarray Sum:
-
 2. Longest Substring with K Distinct Characters:
 3. Longest Subarray with Ones after Replacement:
 4. Find All Anagrams in a String:
