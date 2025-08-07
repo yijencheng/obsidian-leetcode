@@ -25,15 +25,13 @@ ans = 0
 for i, num in enumerate(nums):
 	## 縮小window，找到包含新元素的答案
 	d[num] = d.get(num,0)+1
-	while d[num] > 1:
+	while {condition}: ## Ex.d[num] > 1
 		d[num[i]] -=1
 		left +=1
 
 	## 更新答案
 	ans = max(ans, i-left+1)
 ```
-
-## 判斷window限制，用while-loop縮小窗口
 
 # 例題
 ### 範例1
