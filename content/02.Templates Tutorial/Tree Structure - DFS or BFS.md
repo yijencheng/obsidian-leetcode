@@ -79,7 +79,7 @@ def Solution(root):
 ```
 
 但其實這也不是對的, 結論還是先定義level後 sort一遍才會把所有case解決,
-這邊我們可以把tree 由左至右, 定義index, 由上至下定義level, 我們希望index相同的歸類在一起, 希望level可以由上至下, 
+這邊我們可以把tree 由左至右, 定義index, 由上至下定義level, 我們希望index相同的node歸類在一起, 並希望level可以由上至下, 
 因此我們其實三種traversal的方式挑一種實作就行, 但重要的是我們需要把相同index (左右)歸類在同一個list內, 
 但我們很難知道今天list到底左右有多長, 於是呢, 我們用python定義好的defaultdict(list), 把相同index的element都存到同樣index的list內, 待全部traversal完之後, 我們開始把index由小到大經過, 並把每一個index內的元素, sort by 由小到大的level, 方可完成這題, 也因此我們在儲存每一個元素時, 我們用一個tuple(value, level)來存, 這樣確保後面做排序時, 可以使用
 
