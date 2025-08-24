@@ -38,3 +38,15 @@ def twoSum(self, nums: List[int], target: int) -> List[int]:
 		d[num] = i
 ```
 
+## 範例3: Contains Duplicate II
+題目：[https://leetcode.com/problems/contains-duplicate-ii](https://leetcode.com/problems/contains-duplicate-ii)
+
+```
+ def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        d = {}
+        for i, num in enumerate(nums):
+            if num in d and i-d[num]<=k:
+                return True
+            d[num] = i
+        return False
+```
