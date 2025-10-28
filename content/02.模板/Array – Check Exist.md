@@ -3,12 +3,13 @@ Check Exist 模板，適用於給定一個數組 Array ，是否有「存在符�
 # 模板
 
 🍎 選儲存結構
-* 如果只是紀錄值，可以用sets。如果需要紀錄 value, index，可以用 dict
+* 如果只是紀錄值，可以用sets
+* 如果需要紀錄 value, index，可以用 dict
 
 ```
 d = {} //用來紀錄過去出現的元素
 for i,num in enumerate(nums):
-	// 確認符合條件，決定是否return 
+	// 確認符合條件（exist)，決定是否return 
 	
 	// 將新元素加入紀錄
 ```
@@ -26,8 +27,7 @@ def containsDuplicate(self, nums: List[int]) -> bool:
 ## 範例2: Two sum
 題目：[https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)
 思考
-* 不只要找到「過去某個元素是否存在」，還要找到他對應的位置 (index)
-* 因此要使用dictionary
+* 不只要知道「過去某個元素是否存在」，還要找到對應的位置 (index) >> dictionary
 ```
 def twoSum(self, nums: List[int], target: int) -> List[int]:
 	d = {}
