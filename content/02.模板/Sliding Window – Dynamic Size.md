@@ -10,8 +10,6 @@ Sliding Window 是一個演算法，通常是針對[[找出Array中所有符合�
 * 選擇 window資料結構：常用 [[Dict (HashMap)]]
 * Left/start 指針: 在縮小window時，用來追蹤window左邊界
 * ans：用來存最佳答案
-🍎 [[遍歷 array]] 
-* 用for/while loop遍歷
 🍎 縮小window，找到包含新元素的答案
 * 決定先將新元素加入window（多數）還是後加
 * **判斷window限制，用while loop縮小窗口**
@@ -36,7 +34,7 @@ for i, num in enumerate(nums):
 # 例題
 ### 範例1
 題目：[Maximum sum of subarray with size k](https://www.geeksforgeeks.org/dsa/find-maximum-minimum-sum-subarray-size-k/)
-敘述：Given an array of integers and a number k, find the maximum sum of a subarray of size k.
+敘述：Given an array of integers and a number k, find the maximum sum of a subarray ==of size k ==.
 Example 1: 
 > Input  : arr = {100, 200, 300, 400},  k = 2
 > Output : 700
