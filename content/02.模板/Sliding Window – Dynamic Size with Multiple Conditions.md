@@ -21,7 +21,12 @@ for i, num in enumerate(nums):
 ## 範例1
 
 題目：[2106. Maximum Fruits Harvested After at Most K Steps](https://leetcode.com/problems/maximum-fruits-harvested-after-at-most-k-steps/)
-敘述：參考上方連結
+敘述：Fruits are available at some positions on an infinite x-axis. You are given a 2D integer array `fruits` where `fruits[i] = [positioni, amounti]` depicts `amounti` fruits at the position `positioni`. `fruits` is already **sorted** by `positioni` in **ascending order**, and each `positioni` is **unique**.
+
+You are also given an integer `startPos` and an integer `k`. Initially, you are at the position `startPos`. From any position, you can either walk to the **left or right**. It takes **one step** to move **one unit** on the x-axis, and you can walk **at most** `k` steps in total. For every position you reach, you harvest all the fruits at that position, and the fruits will disappear from that position.
+
+Return _the **maximum total number** of fruits you can harvest_.
+
 Example 1:
 > Input: fruits = [ [2,8],[6,3],[8,6] ], startPos = 5, k = 4
 > Output: 9

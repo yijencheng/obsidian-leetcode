@@ -1,7 +1,6 @@
 編輯: @yijencheng
 # 摘要
-Sliding Window 是一個演算法，通常是針對[[找出Array中所有符合條件的最佳解]]進行的優化。
-<iframe width="560" height="315" src="https://www.youtube.com/embed/GcW4mgmgSbw?si=ZTYGQGikCAgV818X" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+Sliding Window 是一個演算法，通常是針對[[找出Array中所有符合條件的最佳解]]的優化。
 
 
 # 模板
